@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function POST(request: NextRequest) {
   try {
     // Get jobs that haven't been applied to
@@ -57,7 +58,12 @@ export async function POST(request: NextRequest) {
   }
 }
 
-function generateEmailContent(jobs: any[]) {
+function generateEmailContent(jobs: Array<{
+  companies?: { name: string } | null;
+  title: string;
+  location?: string | null;
+  created_at: string;
+}>) {
   const jobsList = jobs.map(job => `
     <tr style="border-bottom: 1px solid #e2e8f0;">
       <td style="padding: 12px; font-weight: 500;">${job.companies?.name || 'Unknown Company'}</td>
