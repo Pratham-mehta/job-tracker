@@ -107,7 +107,7 @@ function generateEmailContent(jobs: Array<{
       </table>
 
       <div style="text-align: center; margin-top: 30px;">
-        <a href="http://localhost:3000/jobs" 
+        <a href="https://job-tracker-liart-pi.vercel.app/jobs" 
            style="display: inline-block; background: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 500;">
           View All Jobs
         </a>
