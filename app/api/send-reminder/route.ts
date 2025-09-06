@@ -1,11 +1,21 @@
 import { Resend } from 'resend'
 import { supabase } from '../../../lib/supabase'
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export async function POST(request: NextRequest) {
+// Handle GET requests (for cron jobs)
+export async function GET() {
+  return handleSendReminder();
+}
+
+// Handle POST requests (for manual testing)
+export async function POST() {
+  return handleSendReminder();
+}
+
+// Shared function that handles the email logic
+async function handleSendReminder() {
   try {
     // Get jobs that haven't been applied to
     const { data: unappliedJobs, error } = await supabase
@@ -33,8 +43,8 @@ export async function POST(request: NextRequest) {
 
     // Send email
     const { data, error: emailError } = await resend.emails.send({
-      from: 'Job Tracker <onboarding@resend.dev>', // You'll need to update this
-      to: ['pm3483@nyu.edu'], // Update with your email
+      from: 'Job Tracker <onboarding@resend.dev>',
+      to: ['pm3483@nyu.edu'],
       subject: `Job Reminder: ${unappliedJobs.length} jobs waiting for your application`,
       html: emailContent,
     })
