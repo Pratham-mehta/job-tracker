@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import SubscribeForm from '../components/SubscribeForm'
 
 export default function HomePage() {
   return (
@@ -7,10 +8,10 @@ export default function HomePage() {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Pratham&apos;s Job Tracker
+            Job Tracker
           </h1>
           <p className="text-xl text-gray-600">
-            Stay organized and track your job applications efficiently
+            Track job applications together — add opportunities and help each other stay on top of them
           </p>
         </div>
 
@@ -48,11 +49,14 @@ export default function HomePage() {
         </div>
 
         {/* Quick Stats - Optional */}
-        <div className="mt-12 text-center">
+        <div className="mt-12 mb-12 text-center">
           <p className="text-gray-500">
-            Welcome back, Pratham! Ready to land your next opportunity?
+            A community board for tracking job opportunities — jump in and add one.
           </p>
         </div>
+
+        {/* Email Subscription */}
+        <SubscribeForm />
       </div>
     </div>
   )
