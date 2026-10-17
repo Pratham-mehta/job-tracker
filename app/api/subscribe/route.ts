@@ -3,7 +3,8 @@ import { supabaseAdmin } from '../../../lib/supabaseAdmin'
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-// Anyone can subscribe their own email to the daily job alert digest.
+// Any signed-in user can subscribe an email to the daily job alert digest.
+// (Middleware rejects signed-out callers with a 401 before this runs.)
 export async function POST(request: Request) {
   try {
     const { email } = await request.json()
